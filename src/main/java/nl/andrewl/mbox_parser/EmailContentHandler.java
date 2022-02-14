@@ -1,6 +1,5 @@
 package nl.andrewl.mbox_parser;
 
-import org.apache.james.mime4j.MimeException;
 import org.apache.james.mime4j.parser.AbstractContentHandler;
 import org.apache.james.mime4j.stream.BodyDescriptor;
 import org.apache.james.mime4j.stream.Field;
