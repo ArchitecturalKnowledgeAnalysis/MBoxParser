@@ -1,2 +1,2 @@
 # MBoxParser
-Utility for parsing a MBox files into more easily digestible formats.
+Utility for parsing MBox files into more easily digestible formats.
