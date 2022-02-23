@@ -36,7 +36,7 @@ public class EmailContentHandler extends AbstractContentHandler {
 			case "FROM" -> email.sentFrom = body;
 			case "SUBJECT" -> email.subject = body;
 			case "DATE" -> email.date = parseDate(body);
-			case "MESSAGE-ID" -> email.messageId = body;
+			case "MESSAGE-ID" -> email.messageId = sanitizeId(body);
 			case "IN-REPLY-TO" -> email.inReplyTo = body;
 		}
 	}
@@ -56,6 +56,15 @@ public class EmailContentHandler extends AbstractContentHandler {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	private String sanitizeId(String rawId) {
+		String s = rawId.trim();
+		int i = s.indexOf('<');
+		if (i != -1) s = s.substring(i + 1);
+		i = s.lastIndexOf('>');
+		if (i != -1) s = s.substring(0, i);
+		return s;
 	}
 
 	public Email getEmail() {
