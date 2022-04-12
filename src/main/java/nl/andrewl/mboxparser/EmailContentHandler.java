@@ -11,7 +11,12 @@ import java.io.UnsupportedEncodingException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
+/**
+ * A content handler that can be provided to the Mbox parser, to handle any
+ * incoming field values.
+ */
 public class EmailContentHandler extends AbstractContentHandler {
 	private final Email email = new Email();
 
@@ -50,6 +55,8 @@ public class EmailContentHandler extends AbstractContentHandler {
 			s = s.substring(7);
 		}
 		s = s.replaceAll("\\s+", " ");
+		// RFC-1123 doesn't allow this type of GMT label.
+		if (s.endsWith("+0000")) s = s.replace("+0000", "GMT");
 		try {
 			return ZonedDateTime.parse(s, DateTimeFormatter.RFC_1123_DATE_TIME);
 		} catch (DateTimeParseException e) {
@@ -67,6 +74,10 @@ public class EmailContentHandler extends AbstractContentHandler {
 		return s;
 	}
 
+	/**
+	 * Gets the email that this handler has assembled after parsing is complete.
+	 * @return The completed email.
+	 */
 	public Email getEmail() {
 		return email;
 	}
