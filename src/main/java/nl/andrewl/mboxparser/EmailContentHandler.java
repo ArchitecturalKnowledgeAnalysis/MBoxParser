@@ -12,6 +12,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A content handler that can be provided to the Mbox parser, to handle any
@@ -57,6 +59,20 @@ public class EmailContentHandler extends AbstractContentHandler {
 		s = s.replaceAll("\\s+", " ");
 		// RFC-1123 doesn't allow this type of GMT label.
 		if (s.endsWith("+0000")) s = s.replace("+0000", "GMT");
+
+		// Some dates are formatted like so: "Wed Mar 19 02:22:16 2014"
+		// We need to convert this to: "Wed, 19 Mar 2014 02:22:16
+		final String regex = "(\\w{3}) (\\w{3}) (\\d{1,2}) (\\d{2}:\\d{2}:\\d{2}) (\\d{4})";
+		Pattern p1 = Pattern.compile(regex);
+		Matcher m1 = p1.matcher(s);
+		if (m1.find()) {
+			String weekday = m1.group(1);
+			String month = m1.group(2);
+			String dayOfMonth = m1.group(3);
+			String time = m1.group(4);
+			String year = m1.group(5);
+			s = s.replaceFirst(regex, "%s, %s %s %s %s".formatted(weekday, dayOfMonth, month, year, time));
+		}
 		try {
 			return ZonedDateTime.parse(s, DateTimeFormatter.RFC_1123_DATE_TIME);
 		} catch (DateTimeParseException e) {
