@@ -1,4 +1,4 @@
-package nl.andrewl.mbox_parser;
+package nl.andrewl.mboxparser;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeUtility;

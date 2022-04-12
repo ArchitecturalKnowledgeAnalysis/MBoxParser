@@ -1,4 +1,4 @@
-package nl.andrewl.mbox_parser;
+package nl.andrewl.mboxparser;
 
 import org.apache.james.mime4j.MimeException;
 import org.apache.james.mime4j.mboxiterator.CharBufferWrapper;

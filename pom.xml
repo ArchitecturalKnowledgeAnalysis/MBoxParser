@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>nl.andrewl</groupId>
-    <artifactId>mbox-parser</artifactId>
+    <artifactId>mboxparser</artifactId>
     <version>1.2.0</version>
 
     <properties>
@@ -18,12 +18,12 @@
         <dependency>
             <groupId>org.apache.james</groupId>
             <artifactId>apache-mime4j-core</artifactId>
-            <version>0.8.4</version>
+            <version>0.8.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.james</groupId>
             <artifactId>apache-mime4j-mbox-iterator</artifactId>
-            <version>0.8.4</version>
+            <version>0.8.6</version>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
@@ -31,6 +31,15 @@
             <version>1.4.7</version>
         </dependency>
     </dependencies>
+
+    <!-- Setup for deploying to GitHub packages with mvn deploy. -->
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Github ArchitecturalKnowledgeAnalysis Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ArchitecturalKnowledgeAnalysis/MBoxParser</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>

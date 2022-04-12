@@ -1,4 +1,4 @@
-package nl.andrewl.mbox_parser;
+package nl.andrewl.mboxparser;
 
 /**
  * Handler that's invoked whenever a new email is parsed from an MBox file.

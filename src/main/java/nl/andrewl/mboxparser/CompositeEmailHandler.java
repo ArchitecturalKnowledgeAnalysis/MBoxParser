@@ -1,4 +1,4 @@
-package nl.andrewl.mbox_parser;
+package nl.andrewl.mboxparser;
 
 import java.util.ArrayList;
 import java.util.List;

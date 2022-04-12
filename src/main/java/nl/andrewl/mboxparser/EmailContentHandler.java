@@ -1,4 +1,4 @@
-package nl.andrewl.mbox_parser;
+package nl.andrewl.mboxparser;
 
 import org.apache.james.mime4j.parser.AbstractContentHandler;
 import org.apache.james.mime4j.stream.BodyDescriptor;
